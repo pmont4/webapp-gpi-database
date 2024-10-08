@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function TestFetch() {
+function EngineerTestFetch() {
     const [info, setInfo] = useState(null);
 
     const fetchData = async () => {
@@ -35,9 +35,9 @@ function TestFetch() {
                 <tbody>
                         {info.map((engineer) => (
                             <tr key={engineer.id_engineer}>
-                                <td><span style={{color: 'red'}}>ID</span>: {engineer.id_engineer}</td>
-                                <td><span style={{color: 'red'}}>Nombre</span>: {engineer.engineer_name}</td>
-                                {engineer.engineer_contact ? <td><span style={{color: 'red'}}>Contacto</span>: {engineer.engineer_contact}</td> : <p>No hay contacto registrado</p>}
+                                <td>{engineer.id_engineer}</td>
+                                <td>{engineer.engineer_name}</td>
+                                {engineer.engineer_contact ? <td>{engineer.engineer_contact}</td> :<td><p>No hay contacto registrado</p></td>}
                             </tr>
                         ))}
 
@@ -47,4 +47,4 @@ function TestFetch() {
     );
 }
 
-export {TestFetch}
+export {EngineerTestFetch}
