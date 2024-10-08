@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { PlantFilterItem } from "./PlantFilterItem";
+import { PlantFilterInput } from "./PlantFilterInput";
 
 function PlantFilter() {
     const [info, setInfo] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
     const fetchData = async () => {
         const url = 'http://localhost:8080/gpi/plant/';
@@ -22,16 +24,18 @@ function PlantFilter() {
         );
     }
 
+    if (searchValue) console.log(searchValue);
+
     return (
         <>
             <div className="input-group mb-3">
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Seleccionar planta</button>
                 <ul className="dropdown-menu">
-                    {info.map((p) => (
-                        <PlantFilterItem key={p.id_plant} list={info} toFind={p.id_plant} />
+                    {info.map((item) => (
+                        <PlantFilterItem key={item.id_plant} list={info} value={item.id_plant} setSearchValue={setSearchValue} />
                     ))}
                 </ul>
-                <input type="text" className="form-control" placeholder="Escriba o seleccione la planta" />
+                <PlantFilterInput setSearchValue={setSearchValue} />
             </div>
         </>
     );
